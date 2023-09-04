@@ -1,0 +1,27 @@
+Lab Program 10:
+class Student:
+    def __init__(self, name = "", usn = "", score = [0,0,0,0]):
+        self.name = name
+        self.usn = usn
+        self.score = score
+    def getMarks(self):
+        self.name = input("Enter student Name : ")
+        self.usn = input("Enter student USN : ")
+        self.score[0] = int(input("Enter marks in Subject 1 : "))
+        self.score[1] = int(input("Enter marks in Subject 2 : "))
+        self.score[2] = int(input("Enter marks in Subject 3 : "))
+        self.score[3] = self.score[0] + self.score[1] + self.score[2]
+    def display(self):
+        percentage = self.score[3]/3
+        spcstr = "-" * 75
+        print(spcstr)
+        print("SCORE CARD DETAILS".center(75))
+        print(spcstr)
+        print(f"{'NAME':^15s}{'USN':^12s}{'MARKS1':^8s}{'MARKS2':^8s}{'MARKS3':^8s}{'TOTAL':^8s}{'PERCENTAGE':^8s}")
+        print(spcstr)
+        print(f"{self.name:^15s}{self.usn:^12s}{self.score[0]:^8}{self.score[1]:^8}{self.score[2]:^8}{self.score[3]:^8 {percentage:^8.2f}")
+        print(spcstr)
+
+s1 = Student()
+s1.getMarks()
+s1.display()
