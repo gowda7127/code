@@ -25,3 +25,181 @@ class Student:
 s1 = Student()
 s1.getMarks()
 s1.display()
+
+
+LAB 9
+class Complex:
+    def __init__(self, realp = 0, imagp=0):
+        self.realp = realp
+        self.imagp = imagp
+    def readComplex(self):
+        self.realp = int(input("Enter the real part : "))
+        self.imagp = int(input("Enter the real part : "))
+
+    def showComplex(self):
+        print(f"({self.realp})+i({self.imagp})")
+
+    def addComplex(self, c2):
+        c3 = Complex()
+        c3.realp = self.realp + c2.realp
+        c3.imagp = self.imagp + c2.imagp
+        return c3
+
+def add2Complex(a,b):
+    c=a.addComplex(b)
+    return c
+c1 = Complex(3,5)
+c2 = Complex(6,4)
+print("Complex Number 1")
+c1.showComplex()
+print("Complex Number 2")
+c2.showComplex()
+c3 = add2Complex(c1, c2)
+print("Sum of two Complex Numbers")
+c3.showComplex()
+
+compList = []
+num = int(input("\nEnter the value for N : "))
+for i in range(num):
+    print("Object", i+1)
+    obj = Complex()
+    obj.readComplex()
+    compList.append(obj)
+
+print("\nEntered Complex numbers are : ")
+for obj in compList:
+    obj.showComplex()
+
+sumObj = Complex()
+for obj in compList:
+    sumObj = add2Complex(sumObj, obj)
+
+print("\nSum of N complex numbers is", end = " ")
+sumObj.showComplex()
+
+1.1 Student Name,USn
+stName = input("Enter the name of the student : ")
+stUSN = input("Enter the USN of the student : ")
+stMarks1 = int(input("Enter marks in Subject 1 : "))
+stMarks2 = int(input("Enter marks in Subject 2 : "))
+stMarks3 = int(input("Enter marks in Subject 3 : "))
+print("Student Details\n=========================")
+print("%12s"%("Name :"), stName)
+print("%12s"%("USN :"), stUSN)
+print("%12s"%("Marks 1 :"), stMarks1)
+print("%12s"%("Marks 2 :"), stMarks2)
+print("%12s"%("Marks 3 :"), stMarks3)
+print("%12s"%("Total :"), stMarks1+stMarks2+stMarks3)
+print("%12s"%("Percent :"), "%.2f"%((stMarks1+stMarks2+stMarks3)/3))
+print("=========================")
+
+
+1.2 Develop a program to read the name and year of birth of a person
+from datetime import date
+
+perName = input("Enter the name of the person : ")
+perDOB = int(input("Enter his year of birth : "))
+curYear = date.today().year
+perAge = curYear - perDOB
+if (perAge > 60):
+print(perName, "aged", perAge, "years is a Senior Citizen.")
+else:
+print(perName, "aged", perAge, "years is not a Senior Citizen.")
+
+2.1 generate Fibonacci sequence of length (N) 
+num = int(input("Enter the Fibonacci sequence length to be generated : "))
+firstTerm = 0
+secondTerm = 1
+print("The Fibonacci series with", num, "terms is :")
+print(firstTerm, secondTerm, end=" ")
+for i in range(2,num):
+curTerm = firstTerm + secondTerm
+print(curTerm, end=" ")
+firstTerm = secondTerm
+secondTerm = curTerm
+print()
+
+2.2 Write a function to calculate factorial of a number
+def fact(num):
+if num == 0:
+return 1
+else:
+return num * fact(num-1)
+n = int(input("Enter the value of N : "))
+r = int(input("Enter the value of R (R cannot be negative or greater than N): "))
+nCr = fact(n)/(fact(r)*fact(n-r))
+print(n,’C’,r," = ","%d"%nCr, sep="")
+
+3 Read N numbers from the console and create a list
+from math import sqrt
+myList = []
+num = int(input("Enter the number of elements in your list : "))
+for i in range(num):
+val = int(input("Enter the element : "))
+myList.append(val)
+print(’The length of list1 is’, len(myList))
+print(’List Contents’, myList)
+
+total = 0
+for elem in myList:
+total += elem
+mean = total / num
+total = 0
+for elem in myList:
+total += (elem - mean) * (elem - mean)
+variance = total / num
+stdDev = sqrt(variance)
+print("Mean =", mean)
+print("Variance =", variance)
+print("Standard Deviation =", "%.2f"%stdDev)
+
+
+
+4 Read a multi-digit number (as chars) from the console.
+num = input("Enter a number : ")
+print("The number entered is :", num)
+uniqDig = set(num)
+
+for elem in uniqDig:
+print(elem, "occurs", num.count(elem), "times")
+
+
+7 Develop a program to backing Up a given Folder
+import os
+import sys
+import pathlib
+import zipfile
+dirName = input("Enter Directory name that you want to backup : ")
+if not os.path.isdir(dirName):
+print("Directory", dirName, "doesn’t exists")
+sys.exit(0)
+curDirectory = pathlib.Path(dirName)
+with zipfile.ZipFile("myZip.zip", mode="w") as archive:
+for file_path in curDirectory.rglob("*"):
+archive.write(file_path, arcname=file_path.relative_to(curDirectory))
+
+if os.path.isfile("myZip.zip"):
+print("Archive", "myZip.zip", "created successfully")
+else:
+print("Error in creating zip archive")
+
+
+8 Write a function named DivExp which takes TWO parameters a, b and returns a value c (c=a/b).
+DivExp.
+
+import sys
+def DivExp(a,b):
+assert a>0, "a should be greater than 0"
+try:
+c = a/b
+except ZeroDivisionError:
+print("Value of b cannot be zero")
+sys.exit(0)
+else:
+return c
+val1 = int(input("Enter a value for a : "))
+val2 = int(input("Enter a value for b : "))
+val3 = DivExp(val1, val2)
+print(val1, "/", val2, "=", val3)
+
+
